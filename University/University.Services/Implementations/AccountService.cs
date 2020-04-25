@@ -46,6 +46,7 @@
                 {
                     AccessToken = await this.GenerateJwtTokenAsync(user),
                     RefreshToken = this.GenerateRefreshToken(user),
+                    Role = user.RoleId,
                 };
             }
 
@@ -65,6 +66,7 @@
                 {
                     AccessToken = await this.GenerateJwtTokenAsync(user),
                     RefreshToken = this.GenerateRefreshToken(user),
+                    Role = user.RoleId,
                 };
             }
             catch (SecurityTokenException)
