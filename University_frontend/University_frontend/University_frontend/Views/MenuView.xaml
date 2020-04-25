@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:behaviors="clr-namespace:University_frontend.Behaviors"
+             xmlns:templates="clr-namespace:University_frontend.Templates"
+             xmlns:utility="clr-namespace:University_frontend.Utility;assembly=University_frontend"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             x:Class="University_frontend.Views.MenuView"
+             Title="MenuView">
+    
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="8*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListView ItemsSource="{Binding MenuItems}"  CachingStrategy="RecycleElement"
+                SeparatorVisibility="None" HasUnevenRows="True" >
+                    <ListView.Behaviors>
+                        <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding MenuItemTappedCommand}"></behaviors:EventToCommandBehavior>
+                    </ListView.Behaviors>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <templates:MenuItemTemplate />
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+    
+</ContentPage>

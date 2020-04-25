@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utility="clr-namespace:University_frontend.Utility;assembly=University_frontend"
+             xmlns:converters="clr-namespace:University_frontend.Extensions"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             x:Class="University_frontend.Views.SubjectView">
+
+    <ContentPage.Resources>
+        <converters:NotNullConverter x:Key="NotNullConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="CenterAndExpand" >
+
+            <Entry Placeholder="Name"
+                   Text="{Binding Subject.Name}"
+                   ReturnType="Done" />
+
+            <Button Text="Save"
+                    BackgroundColor="GreenYellow"
+                    Command="{Binding SaveSubjectClicked}" />
+            <Button Text="Delete"
+                    BackgroundColor="Red"
+                    IsVisible="{Binding Subject.Id, Converter={StaticResource NotNullConverter}}"
+                    Command="{Binding DeleteSubjectClicked}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

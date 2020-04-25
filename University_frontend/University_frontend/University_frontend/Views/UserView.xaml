@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utility="clr-namespace:University_frontend.Utility;assembly=University_frontend"
+             xmlns:converters="clr-namespace:University_frontend.Extensions"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             x:Class="University_frontend.Views.UserView">
+
+    <ContentPage.Resources>
+        <converters:NotNullConverter x:Key="NotNullConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="CenterAndExpand" >
+
+            <Entry Placeholder="Name"
+                   Text="{Binding User.UserName}"
+                   ReturnType="Next" />
+            <Entry Placeholder="Email"
+                   Text="{Binding User.Email}"
+                   Keyboard="Email"
+                   ReturnType="Next" />
+            <Entry Placeholder="Name"
+                   Text="{Binding User.Fullname}"
+                   ReturnType="Next" />
+            <Entry Placeholder="Password"
+                   Text="{Binding User.PasswordHash}"
+                   IsPassword="True"
+                   ReturnType="Next" />
+            <Picker Title="Role"
+                    SelectedItem="{Binding User.RoleId}" >
+                <Picker.Items>
+                    <x:String>Admin</x:String>
+                    <x:String>Student</x:String>
+                    <x:String>Teacher</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <Button Text="Save"
+                    BackgroundColor="GreenYellow"
+                    Command="{Binding SaveUserClicked}" />
+            <Button Text="Delete"
+                    BackgroundColor="Red"
+                    IsVisible="{Binding User.Id, Converter={StaticResource NotNullConverter}}"
+                    Command="{Binding DeleteUserClicked}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>
