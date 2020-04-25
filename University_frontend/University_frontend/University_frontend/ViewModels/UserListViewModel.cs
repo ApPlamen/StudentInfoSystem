@@ -54,11 +54,23 @@
 
         private async void AddUserClickedAction()
         {
+            if (!AccountService.IsAdminOrTeacher())
+            {
+                await dialogService.ShowDialog("Unauthorized access", "Error", "Ok");
+                return;
+            }
+
             await navigationService.NavigateToAsync<UserViewModel>();
         }
 
         private async void EditUserClickedAction()
         {
+            if (!AccountService.IsAdminOrTeacher())
+            {
+                await dialogService.ShowDialog("Unauthorized access", "Error", "Ok");
+                return;
+            }
+
             if (SelectedUser == null)
             {
                 dialogService.ShowToast("Select a user.");

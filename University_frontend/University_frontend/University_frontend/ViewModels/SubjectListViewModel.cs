@@ -54,11 +54,23 @@
 
         private async void AddSubjectClickedAction()
         {
+            if (!AccountService.IsAdminOrTeacher())
+            {
+                await dialogService.ShowDialog("Unauthorized access", "Error", "Ok");
+                return;
+            }
+
             await navigationService.NavigateToAsync<SubjectViewModel>();
         }
 
         private async void EditSubjectClickedAction()
         {
+            if (!AccountService.IsAdminOrTeacher())
+            {
+                await dialogService.ShowDialog("Unauthorized access", "Error", "Ok");
+                return;
+            }
+
             if (SelectedSubject == null)
             {
                 dialogService.ShowToast("Select a subject.");

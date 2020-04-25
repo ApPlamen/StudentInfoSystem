@@ -54,11 +54,23 @@
 
         private async void AddGradeClickedAction()
         {
+            if (!AccountService.IsAdminOrTeacher())
+            {
+                await dialogService.ShowDialog("Unauthorized access", "Error", "Ok");
+                return;
+            }
+
             await navigationService.NavigateToAsync<GradeViewModel>();
         }
 
         private async void EditGradeClickedAction()
         {
+            if (!AccountService.IsAdminOrTeacher())
+            {
+                await dialogService.ShowDialog("Unauthorized access", "Error", "Ok");
+                return;
+            }
+
             if (SelectedGrade == null)
             {
                 dialogService.ShowToast("Select a grade.");
