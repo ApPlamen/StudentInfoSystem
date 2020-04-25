@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utility="clr-namespace:University_frontend.Utility;assembly=University_frontend"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             Title="All Users"
+             x:Class="University_frontend.Views.UserListView">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem    Text="Add"
+                        Command="{Binding AddUserClicked}" />
+        <ToolbarItem    Text="Edit"
+                        Command="{Binding EditUserClicked}" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="CenterAndExpand">
+
+            <ListView   VerticalOptions="FillAndExpand"
+                        ItemsSource="{Binding Users}"
+                        SelectedItem="{Binding SelectedUser}"
+                        CachingStrategy="RecycleElement"
+                        SeparatorVisibility="Default"
+                        HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="5" BackgroundColor="White" RowSpacing="2" HeightRequest="60">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Row="0" Grid.Column="0" Text="{Binding Fullname}" />
+                                <Label Grid.Row="0" Grid.Column="1" Text="{Binding RoleId}" />
+
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

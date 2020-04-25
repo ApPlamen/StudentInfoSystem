@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:utility="clr-namespace:University_frontend.Utility;assembly=University_frontend"
+             xmlns:converters="clr-namespace:University_frontend.Extensions"
+             utility:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             x:Class="University_frontend.Views.GradeView">
+
+    <ContentPage.Resources>
+        <converters:NotNullConverter x:Key="NotNullConverter"/>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout
+            VerticalOptions="CenterAndExpand" >
+
+            <Picker Title="Student"
+                    ItemsSource="{Binding Students}"
+                    SelectedItem="{Binding SelectedStudent}"
+                    ItemDisplayBinding="{Binding Fullname}" />
+            <Picker Title="Teacher"
+                    ItemsSource="{Binding Teachers}"
+                    SelectedItem="{Binding SelectedTeacher}"
+                    ItemDisplayBinding="{Binding Fullname}" />
+            <Picker Title="Subject"
+                    ItemsSource="{Binding Subjects}"
+                    SelectedItem="{Binding SelectedSubject}"
+                    ItemDisplayBinding="{Binding Name}" />
+
+            <Entry Placeholder="GradeValue"
+                   Text="{Binding Grade.GradeValue}"
+                   Keyboard="Numeric"
+                   ReturnType="Done" />
+
+            <Button Text="Save"
+                    BackgroundColor="GreenYellow"
+                    Command="{Binding SaveGradeClicked}" />
+            <Button Text="Delete"
+                    BackgroundColor="Red"
+                    IsVisible="{Binding Grade.Id, Converter={StaticResource NotNullConverter}}"
+                    Command="{Binding DeleteGradeClicked}" />
+
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

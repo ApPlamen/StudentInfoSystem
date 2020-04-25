@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <ApplicationIcon />
+    <StartupObject />
+    <GenerateRuntimeConfigurationFiles>True</GenerateRuntimeConfigurationFiles>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20200404151815_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200404151815_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200404155103_InitialCreate.cs" />
+    <Compile Remove="Migrations\20200404155103_InitialCreate.Designer.cs" />
+    <Compile Remove="Migrations\20200405110348_Test.cs" />
+    <Compile Remove="Migrations\20200405110348_Test.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\University.Common\University.Authentication.csproj" />
+    <ProjectReference Include="..\University.Common\University.Authentication\University.Authentication.csproj" />
+  </ItemGroup>
+
+</Project>
